@@ -1,13 +1,42 @@
 import express, { Express, Request, Response } from "express";
 import { getAllMessages } from "./models/message";
+import messageRouter from "./routes/message.route";
+import swaggerJsDoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
 
+
+app.use("/api/messages", messageRouter);
+
+
+
+const swaggerOptions = {
+  swaggerDefinition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'My API',
+      version: '1.0.0',
+      description: 'API documentation',
+    },
+    servers: [
+      {
+        url: 'http://localhost:3000',
+      },
+    ],
+  },
+  apis: ['./src/routes/*.ts'], // files containing annotations as above
+};
+ 
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+
 // Detta är händelsestyrd programmering, när en request kommer in så körs den callback som är kopplad till den route som matchar requesten
-app.get("/test", (req: Request, res: Response) => {
-    res.json(getAllMessages());
-  });
+// app.get("/test", (req: Request, res: Response) => {
+//     res.json(getAllMessages());
+//   });
 
    
 app.listen(port, async () => {
