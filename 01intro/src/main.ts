@@ -3,12 +3,14 @@ import { getAllMessages } from "./models/message";
 import messageRouter from "./routes/message.route";
 import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
+import playerRouter from "./routes/players.route";
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
 
 
 app.use("/api/messages", messageRouter);
+app.use("/api/players", playerRouter);
 
 
 

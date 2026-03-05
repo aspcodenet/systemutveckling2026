@@ -8,7 +8,7 @@ const messageRouter = Router();
  * @swagger
  * /api/messages:
  *   get:
- *     summary: Retrieve a list of messages
+ *     summary: Retrieve a list of messages bla bla
  *     responses:
  *       200:
  *         description: A list of messages
