@@ -6,6 +6,8 @@ import swaggerUi from "swagger-ui-express";
 import playerRouter from "./routes/players.route";
 
 const app: Express = express();
+app.use(express.json()); // IMPORTANT! This middleware is needed to parse JSON request bodies!
+app.use(express.urlencoded({ extended: true }));
 const port = process.env.PORT || 3000;
 
 

@@ -22,6 +22,7 @@ playerRouter.get("/:id", async (req: Request, res: Response) => {
 
 playerRouter.post("/", async (req: Request, res: Response) => {
     // Here you would typically add code to create a new player in the database
+    console.log(req.body)
     const newPlayerDTO : NewPlayerDTO = req.body as NewPlayerDTO;
     const newPlayer = savePlayer(newPlayerDTO.name, newPlayerDTO.jersey);
     res.status(201).json({ message: "Player created" });

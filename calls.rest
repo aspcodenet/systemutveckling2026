@@ -1,0 +1,26 @@
+### get all
+GET http://localhost:3000/api/players
+
+### get by id
+GET http://localhost:3000/api/players/1
+
+### create
+POST http://localhost:3000/api/players
+Content-Type: application/json
+
+{
+    "name": "Player Name",
+    "jersey": 10
+}
+
+
+### update
+PUT http://localhost:3000/api/players/1
+Content-Type: application/json
+
+{
+    "name": "Updated Player Name",
+    "jersey": 11
+}
+### delete
+DELETE http://localhost:3000/api/players/1     
