@@ -7,6 +7,7 @@ export interface Player extends RowDataPacket {
     jersey: number;
 }
 
+
 export async function findAllPlayers() : Promise<Player[]>{
     let conn = await connection;
     const [rows] = await conn.query<Player[]>("SELECT * FROM player", [])
