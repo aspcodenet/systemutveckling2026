@@ -8,6 +8,7 @@ import playerRouter from "./routes/players.route";
 const app: Express = express();
 const port = process.env.PORT || 3000;
 
+app.use(express.json());
 
 app.use("/api/messages", messageRouter);
 app.use("/api/players", playerRouter);

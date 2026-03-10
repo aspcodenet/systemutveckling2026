@@ -1,5 +1,6 @@
 import { Router,Request,Response } from "express";
-import { findAllPlayers, findPlayerById } from "../models/players";
+import { findAllPlayers, findPlayerById, saveNewPlayer } from "../models/players";
+import { NewPlayerDTO } from "../DTO/playerDTO";
 
 
 const playerRouter = Router();
@@ -85,11 +86,48 @@ playerRouter.get("/:id", async (req: Request, res: Response) => {
     // returnera status 200 och den spelaren som JSON 
 });
 
+
+/**
+ * @swagger
+ * /api/players:
+ *   post:
+ *     summary: Create a new player
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: John Doe
+ *               jersey:
+ *                 type: number
+ *                 example: 10
+ *     responses:
+ *       201:
+ *         description: Player created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                   id:
+ *                     type: number
+ *                     example: 1
+ *                   name:
+ *                     type: string
+ *                     example: John Doe
+ *                   jersey:
+ *                     type: number
+ *                     example: 10
+ *           */
 playerRouter.post("/", async (req: Request, res: Response) => {
-    // Här
-    // ta JSON från body
-    // skapa en insert
-    // return status 201 och den nya spelaren som JSON 
+    console.log(req.body)
+    const newPlayerDTO : NewPlayerDTO = req.body as NewPlayerDTO;
+    const newPlayer = await saveNewPlayer(newPlayerDTO.name, newPlayerDTO.jersey);
+    res.status(201).json(newPlayer);
 });
 
 export default playerRouter;

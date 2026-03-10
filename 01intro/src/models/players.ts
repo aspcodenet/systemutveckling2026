@@ -18,3 +18,18 @@ export async function findPlayerById(id: number) : Promise<Player | null>{
     const [rows] = await conn.query<Player[]>("SELECT * FROM player WHERE id = ?", [id])
     return rows[0] || null;
 }
+
+
+
+
+export async function saveNewPlayer(name: string, jersey: number) : Promise<Player> {
+    let conn = await connection;
+    const [result] = await conn.query("INSERT INTO player (namn, jersey) VALUES (?, ?)", [name, jersey]);
+    const insertId = (result as any).insertId;
+    const player = await findPlayerById(insertId);
+    if (!player) {
+        throw new Error("Failed to retrieve the newly created player");
+    }
+    return player;
+}
+
