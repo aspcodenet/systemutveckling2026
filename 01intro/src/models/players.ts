@@ -19,8 +19,12 @@ export async function findPlayerById(id: number) : Promise<Player | null>{
     return rows[0] || null;
 }
 
-
-
+export async function updatePlayer(id: number, name: string, jersey: number) : Promise<Player|null> {
+    let conn = await connection;
+    await conn.query("UPDATE player SET namn = ?, jersey = ? WHERE id = ?", [name, jersey, id]);
+    const updatedPlayer = await findPlayerById(id);
+    return updatedPlayer;
+}
 
 export async function saveNewPlayer(name: string, jersey: number) : Promise<Player> {
     let conn = await connection;
@@ -31,5 +35,10 @@ export async function saveNewPlayer(name: string, jersey: number) : Promise<Play
         throw new Error("Failed to retrieve the newly created player");
     }
     return player;
+}
+
+export async function deletePlayer(id: number) : Promise<void> {    
+    let conn = await connection;
+    await conn.query("DELETE FROM player WHERE id = ?", [id]);
 }
 

@@ -4,9 +4,11 @@ import messageRouter from "./routes/message.route";
 import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import playerRouter from "./routes/players.route";
+import cors from "cors";
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
+app.use(cors());
 
 app.use(express.json());
 
