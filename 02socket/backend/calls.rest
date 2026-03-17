@@ -6,10 +6,10 @@ GET http://localhost:3000/api/game/
 GET http://localhost:3000/api/game/ffoe9pan7g44oe5f6ydwzd
 
 ### put 
-PUT http://localhost:3000/api/game/ffoe9pan7g44oe5f6ydwzd
+PUT http://localhost:3000/api/game/gsxj92cfadtsg6ognmql1e
 Content-Type: application/json
 
 {
-    "score1": 1,
+    "score1": 2,
     "score2": 2
 }

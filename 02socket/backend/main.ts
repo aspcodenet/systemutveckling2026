@@ -15,8 +15,8 @@ initSocket(server);
 
 getIo().on('connection', (socket: Socket) => {
   console.log('a user connected');
- var query = socket.handshake.query;
- var gameId = query.roomName as string; // Get the room name from the query parameters = game id!
+  var query = socket.handshake.query;
+  var gameId = query.roomName as string; // Get the room name from the query parameters = game id!
   socket.join(gameId);  
 
   // Allow clients to explicitly join rooms after connecting
