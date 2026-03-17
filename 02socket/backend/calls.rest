@@ -1,0 +1,15 @@
+### get all
+GET http://localhost:3000/api/game/
+
+
+### get one
+GET http://localhost:3000/api/game/ffoe9pan7g44oe5f6ydwzd
+
+### put 
+PUT http://localhost:3000/api/game/ffoe9pan7g44oe5f6ydwzd
+Content-Type: application/json
+
+{
+    "score1": 1,
+    "score2": 2
+}
