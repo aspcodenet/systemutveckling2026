@@ -24,15 +24,16 @@ getIo().on('connection', (socket: Socket) => {
     if (roomName) socket.join(roomName);
   });
 
-  socket.on('someoneTypedSomething', (message) => {
+  socket.on('userPlacedABid', (message) => {
     console.log('Message received:', message);
     // if message.amount > lastBid 
+    //if message.bid > 0 /* Replace with actual bid validation logic */ {
     // else rejectBid
     //skicka tillbaka till bara dig
-    socket.emit('bidResponse', { success: true, message: 'Bid accepted!' });
+    socket.emit('bidResponse', { success: true, message: 'Bid accepted!', newBid: message.bid });
     
     // Broadcast the message to all clients in the same room
-    socket.to(gameId).emit('anUpdateFromServer', message);
+    socket.to(gameId).emit('newBidWasPlaced', { newBid: message.bid });
   });
 
 
