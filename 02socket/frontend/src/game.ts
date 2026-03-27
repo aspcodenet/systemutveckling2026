@@ -26,7 +26,9 @@ getGameInfo();
 
 
 
+// Den här raden har ni INTE - ni har ju [].map onclick det är ju id för er
 const currentRoom = new URLSearchParams(document.location.search).get('id');
+
 const socket:Socket = io('http://localhost:3000',{
   query: {
       roomName: currentRoom,
